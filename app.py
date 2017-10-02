@@ -25,7 +25,7 @@ def shutdown_session(exception=None):
 '''
 
 # Login required decorator.
-'''
+
 def login_required(test):
     @wraps(test)
     def wrap(*args, **kwargs):
@@ -35,7 +35,7 @@ def login_required(test):
             flash('You need to login first.')
             return redirect(url_for('login'))
     return wrap
-'''
+
 #----------------------------------------------------------------------------#
 # Controllers.
 #----------------------------------------------------------------------------#
