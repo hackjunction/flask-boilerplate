@@ -1,9 +1,16 @@
 from flask_wtf import Form
-from wtforms import TextField, PasswordField
+from wtforms import TextField, PasswordField, SelectMultipleField
 from wtforms.validators import DataRequired, EqualTo, Length
 
-# Set your classes here.
-
+class CompanyForm(Form):
+    name = TextField(
+        'Company Name', validators=[DataRequired(), Length(min=1, max=50)]
+    )
+    contact_email = TextField(
+        'Contact Email', validators=[DataRequired(), Length(min=6, max=40)]
+    )
+    excellent_skills = SelectMultipleField('Skills applicant should excel at')
+    extra_skills = SelectMultipleField('Skills applicant should excel at')
 
 class RegisterForm(Form):
     name = TextField(

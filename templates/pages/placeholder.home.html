@@ -1,10 +1,25 @@
 {% extends 'layouts/main.html' %}
 {% block title %}Home{% endblock %}
 {% block content %}
-
+<script>
+  $('.ui.dropdown') .dropdown();
+</script>
 <div class="page-header">
   <h1>Sticky footer with fixed navbar</h1>
 </div>
 <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added within <code>#wrap</code> with <code>padding-top: 60px;</code> on the <code>.container</code>.</p>
+<div class="ui stackable page grid">
+  <div class="column">
 
+    <form method="post" class="form">
+      <h3 class="form-heading">Company data ><i class="fa fa-home pull-right"></i></a></h3>
+      {{ form.name(class_ = 'form-control first-input', placeholder = form.name.label.text, required = true, autofocus = true) }}
+      {{ form.contact_email(class_ = 'form-control', placeholder = form.contact_email.label.text, required = true, autofocus = true) }}
+      {{ form.excellent_skills(class_ = 'form-control ui multiple selection dropdown', placeholder = form.excellent_skills.label.text, required = true, autofocus = true) }}
+      {{ form.extra_skills(class_ = 'form-control ui multiple selection dropdown', placeholder = form.extra_skills.label.text, required = true, autofocus = true) }}
+      
+      <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block" disabled>
+    </form>
+  </div>
+</div>
 {% endblock %}

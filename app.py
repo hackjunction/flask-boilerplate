@@ -17,6 +17,8 @@ app = Flask(__name__)
 app.config.from_object('config')
 #db = SQLAlchemy(app)
 
+skills = ['Unix', 'Mac', 'Linux']
+
 # Automatically tear down SQLAlchemy.
 '''
 @app.teardown_request
@@ -43,7 +45,10 @@ def login_required(test):
 
 @app.route('/')
 def home():
-    return render_template('pages/placeholder.home.html')
+    form = CompanyForm(request.form)
+    form.excellent_skills.choices = [(g, g) for g in skills]
+    form.extra_skills.choices = [(g, g) for g in skills]
+    return render_template('pages/placeholder.home.html', form=form)
 
 
 @app.route('/about')

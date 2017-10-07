@@ -13,7 +13,7 @@ Base.query = db_session.query_property()
 
 # Set your classes here.
 
-
+'''
 class User(Base):
     __tablename__ = 'Users'
 
@@ -26,7 +26,7 @@ class User(Base):
         self.name = name
         self.password = password
 
-
+'''
 
 # Create tables.
 Base.metadata.create_all(bind=engine)
