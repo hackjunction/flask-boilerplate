@@ -11,6 +11,10 @@
 html {
   overflow-y: scroll;
 }
+h1 {
+	font-family: Montserrat, sans-serif;
+	font-weight: 900;
+}
 a {
   cursor: pointer;
 }
