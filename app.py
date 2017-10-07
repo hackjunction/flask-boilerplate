@@ -5,6 +5,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
 import logging
 from logging import Formatter, FileHandler
 from forms import *
@@ -26,6 +27,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
 
+bcrypt = Bcrypt(app)
 
 # Login manager user loade
 @login_manager.user_loader
@@ -93,22 +95,30 @@ def about():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm(request.form)
+    errors = []
     if form.validate_on_submit():
         username = form.name.data
         password = form.password.data
 
-        user = User.query.filter_by(name=username, password=password).first()
+        user = User.query.filter_by(name=username).first()
         if not user:
-            errors = ['Invalid login']
+            print 'User not found'
+            errors.append(['Invalid login'])
             return render_template('forms/login.html', form=form, errors=errors)
-        login_user(user)
-        return redirect(url_for('home'))
+
+        elif not bcrypt.check_password_hash(user.password, password):
+            print 'Invalid password'
+            errors.append('Invalid login')
+
+        else:
+            login_user(user)
+            return redirect(url_for('home'))
     else:
         for fieldName, errorMessages in form.errors.items():
             for err in errorMessages:
                 print err
 
-    return render_template('forms/login.html', form=form)
+    return render_template('forms/login.html', form=form, errors = errors)
 
 @app.route("/logout")
 @login_required
@@ -126,7 +136,8 @@ def register():
         password = form.password.data
         email = form.email.data
 
-        user = User(username, password, email)
+        hashed_pass = bcrypt.generate_password_hash(password)
+        user = User(username, hashed_pass, email)
         if user:
             db.session.add(user)
             db.session.commit()
