@@ -3,10 +3,11 @@
 #----------------------------------------------------------------------------#
 
 from flask import Flask, render_template, request
-# from flask.ext.sqlalchemy import SQLAlchemy
+from flask.ext.sqlalchemy import SQLAlchemy
 import logging
 from logging import Formatter, FileHandler
 from forms import *
+from functools import wraps
 import os
 
 #----------------------------------------------------------------------------#
@@ -42,10 +43,21 @@ def login_required(test):
 # Controllers.
 #----------------------------------------------------------------------------#
 
-
-@app.route('/')
+@login_required
+@app.route('/', methods=['GET', 'POST'])
 def home():
     form = CompanyForm(request.form)
+    if request.method == 'POST' and form.validate():
+        print form.name.data
+        print form.contact_email.data
+        print form.excellent_skills.data
+        print form.extra_skills.data
+    else:
+        print 'Form did not validate:'
+        for fieldName, errorMessages in form.errors.items():
+            for err in errorMessages:
+                print err
+
     form.excellent_skills.choices = [(g, g) for g in skills]
     form.extra_skills.choices = [(g, g) for g in skills]
     return render_template('pages/placeholder.home.html', form=form)
