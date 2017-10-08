@@ -34,9 +34,12 @@
 <!-- /scripts -->
 
 </head>
+
 <body class="form-only-page">
 
   <div class="container">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
 
     {% with messages = get_flashed_messages() %}
       {% if messages %}
@@ -50,6 +53,8 @@
     {% endwith %}
 
     {% block content %}{% endblock %}
+    </div>
+    <div class="col-sm-2"></div>
 
   </div>
 

@@ -1,14 +1,28 @@
 {% extends 'layouts/form.html' %}
 {% block title %}Register{% endblock %}
 {% block content %}
+
   <form method="post" class="form">
     <h3 class="form-heading">Register <a href="{{ url_for('home') }}" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>
-    {{ form.name(class_ = 'form-control first-input', placeholder = form.name.label.text, required = true, autofocus = true) }}
-    {{ form.email(class_ = 'form-control', placeholder = form.email.label.text, required = true) }}
-    {{ form.password(class_ = 'form-control', placeholder = form.password.label.text, required = true) }}
-    {{ form.confirm(class_ = 'form-control last-input', placeholder = form.confirm.label.text, required = true) }}
+    <div class="field">
+    <label class="form-label">Name</label>
+        {{ form.name(class_ = 'form-control first-input', required = true, autofocus = true) }}
+    </div>
+
+    <div class="field">
+        <label class="form-label">Email</label>
+        {{ form.email(class_ = 'form-control', required = true) }}
+    </div>
+    <div class="field">
+        <label class="form-label">Password</label>
+        {{ form.password(class_ = 'form-control', required = true) }}
+    </div>
+    <div class="field">
+        <label class="form-label">Repeat Password</label>
+        {{ form.confirm(class_ = 'form-control last-input', required = true) }}
+    </div>
     <p class="pull-left"><a href="{{ url_for('login') }}">Login</a></p>
-    <input type="submit" value="Register" class="btn btn-primary btn-lg btn-block"  disabled>
+    <input type="submit" value="Register" class="button-sea-serpent"  disabled>
     <p>You must add database as well as Flask-Login to enable user management. See the <a href="http://www.realpython.com">Real Python</a> course for more info!</p>
   </form>
 {% endblock %}

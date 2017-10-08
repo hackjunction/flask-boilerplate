@@ -14,6 +14,7 @@ html {
 h1 {
 	font-family: Montserrat, sans-serif;
 	font-weight: 900;
+	text-align: center;
 }
 a {
   cursor: pointer;
@@ -30,6 +31,12 @@ a {
   background: #555;
   color: #FFF;
 }
+
+.header-logo {
+	width: 30%;
+	display: block;
+	margin: auto;
+}
 /* Main elements end */
 
 
@@ -37,4 +44,71 @@ a {
  * Various other styles
  ****************************************************************************/
 
+
+.field {
+	clear: both;
+    margin: 0 0 1em;
+}
+.form-control {
+	    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    margin: 0;
+    outline: 0;
+    -webkit-appearance: none;
+    tap-highlight-color: rgba(255,255,255,0);
+    line-height: 1.21428571em;
+    padding: .67857143em 1em;
+    font-size: 1em;
+    background: #232323;
+    border: 1px solid #fff;
+    color: #fff;
+    box-shadow: 0 0 0 0 transparent inset;
+    -webkit-transition: color .1s ease,border-color .1s ease;
+    transition: color .1s ease,border-color .1s ease;
+    border-radius: 0;
+    font-weight: 300;
+    
+
+}
+.form-control::-webkit-input-placeholder { /* Chrome */
+  color: #fff;
+}
+.form-control:-ms-input-placeholder { /* IE 10+ */
+  color: #fff;
+}
+.form-control::-moz-placeholder { /* Firefox 19+ */
+  color: #fff;
+  opacity: 1;
+}
+.form-control:-moz-placeholder { /* Firefox 4 - 18 */
+  color: #fff;
+  opacity: 1;
+}
+
+a {
+    color: #5ABECF;
+}
+a:hover {
+    color: #1e70bf;
+    text-decoration: none;
+}
+
+.button-sea-serpent {
+    width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+    background-color: #5ABECF!important;	
+    border: none;
+    line-height: 1em;
+	margin: 0 .25em 0 0;
+    padding: .78571429em 1.5em .78571429em;
+    font-weight: 700;
+}
+
+
+
+
+
 /* Various other styles end */
+
+
+
