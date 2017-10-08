@@ -3,6 +3,7 @@
 {% block content %}
 
   <form method="post" class="form">
+    {{ form.csrf_token }}
     <h3 class="form-heading">Register <a href="{{ url_for('home') }}" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>
     <div class="field">
     <label class="form-label">Name</label>
@@ -22,7 +23,8 @@
         {{ form.confirm(class_ = 'form-control last-input', required = true) }}
     </div>
     <p class="pull-left"><a href="{{ url_for('login') }}">Login</a></p>
-    <input type="submit" value="Register" class="button-sea-serpent"  disabled>
+    <input type="submit" value="Register" class="button-sea-serpent">
+
     <p>You must add database as well as Flask-Login to enable user management. See the <a href="http://www.realpython.com">Real Python</a> course for more info!</p>
   </form>
 {% endblock %}

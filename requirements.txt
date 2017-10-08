@@ -3,6 +3,8 @@ Flask-SQLAlchemy
 Flask-WTF
 WTForms
 coverage
+Flask-Login==0.4.0
+Flask-Bcrypt
 # ecdsa
 # paramiko
 # pycrypto
