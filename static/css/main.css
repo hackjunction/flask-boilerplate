@@ -111,6 +111,7 @@ a:hover {
 	margin: 0 .25em 0 0;
     padding: .78571429em 1.5em .78571429em;
     font-weight: 700;
+    color: #FFF;
 }
 
 .navbar-default {
@@ -118,6 +119,7 @@ a:hover {
 	border: none;
 	font-weight: 300;
 	text-transform: uppercase;
+  border-radius: 0;
 
 }
 
@@ -141,8 +143,20 @@ a:hover {
 	background-color: #FFF!important;
 }
 
+.ui.input input {
+  min-height: 2.71428571em;
+  border-radius: 0;
+}
 
+.ui.selection.dropdown {
+  border-radius: 0;
 
+}
+
+.ui.input {
+  display: inherit;
+  color: #FFF;
+}
 
 /* Various other styles end */
 
