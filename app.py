@@ -84,15 +84,32 @@ def home():
                 print str(e)
                 errors.append('Database commit failure.')
 
+
         else:
             print 'Form did not validate:'
             for fieldName, errorMessages in form.errors.items():
                 for err in errorMessages:
                     print err
 
+    else:
+        if (current_user.company_name is not None):
+            # If company name is set, all other data should also already be there
+            form.name.data = current_user.company_name
+            form.contact_email.data = current_user.contact_email
+            form.excellent_skills.data = json.loads(current_user.excellent_skills)
+            form.extra_skills.data = json.loads(current_user.extra_skills)
+            form.titles.data = json.loads(current_user.titles)
+            form.amount_meetings.data = current_user.amount_meetings
+        else:
+            # Set a couple of default values if user has never submitted form
+            form.name.data = current_user.name
+            form.contact_email.data = current_user.email
+            form.amount_meetings.data = 20
+
     form.excellent_skills.choices = [(g, g) for g in skills]
     form.extra_skills.choices = [(g, g) for g in skills]
     form.titles.choices = [(g, g) for g in jobtitles]
+
     return render_template('pages/placeholder.home.html', form=form, errors=errors)
 
 
