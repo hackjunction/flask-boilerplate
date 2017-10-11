@@ -103,7 +103,7 @@ def login():
         user = User.query.filter_by(name=username).first()
         if not user:
             print 'User not found'
-            errors.append(['Invalid login'])
+            errors.append('Invalid login')
             return render_template('forms/login.html', form=form, errors=errors)
 
         elif not bcrypt.check_password_hash(user.password, password):

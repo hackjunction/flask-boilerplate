@@ -2,7 +2,20 @@
 {% block title %}Login{% endblock %}
 {% block content %}
   <form method="post" class="form">
+    {{ form.csrf_token }}
     <h3 class="form-heading">Login</h3>
+    {% for field in form.errors %}
+      {% for error in form.errors[field] %}
+          <div class="alert alert-error">
+              {{error}}
+          </div>
+      {% endfor %}
+    {% endfor %}
+    {% for error in errors %}
+        <div class="alert alert-error">
+            {{error}}
+        </div>
+    {% endfor %}
 
     <div class="field">
         <label class="form-label">Name</label>
@@ -15,6 +28,6 @@
     <p class="pull-left"><a href="{{ url_for('forgot') }}">Forgot Password?</a></p>
     <p class="pull-right"><a href="{{ url_for('register') }}">Register</a></p>
     <input type="submit" value="Submit" class="button-sea-serpent">
-    
+
   </form>
 {% endblock %}
