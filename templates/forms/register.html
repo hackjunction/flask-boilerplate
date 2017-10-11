@@ -17,20 +17,20 @@
             {{error}}
         </div>
     {% endfor %}
-    <div class="field">
+    <div class="field ui input">
     <label class="form-label">Name</label>
         {{ form.name(class_ = 'form-control first-input', required = true, autofocus = true) }}
     </div>
 
-    <div class="field">
+    <div class="field ui input">
         <label class="form-label">Email</label>
         {{ form.email(class_ = 'form-control', required = true) }}
     </div>
-    <div class="field">
+    <div class="field ui input">
         <label class="form-label">Password</label>
         {{ form.password(class_ = 'form-control', required = true) }}
     </div>
-    <div class="field">
+    <div class="field ui input">
         <label class="form-label">Repeat Password</label>
         {{ form.confirm(class_ = 'form-control last-input', required = true) }}
     </div>
