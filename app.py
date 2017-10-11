@@ -49,6 +49,10 @@ def shutdown_session(exception=None):
 # Controllers.
 #----------------------------------------------------------------------------#
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return redirect(url_for('home'))
+
 @app.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
@@ -193,10 +197,6 @@ def internal_error(error):
     db_session.rollback()
     return render_template('errors/500.html'), 500
 '''
-
-@app.errorhandler(404)
-def not_found_error(error):
-    return render_template('errors/404.html'), 404
 
 if not app.debug:
     file_handler = FileHandler('error.log')
