@@ -23,6 +23,8 @@ app.config.from_object('config')
 db = SQLAlchemy(app)
 
 skills = ['Unix', 'Mac', 'Linux']
+jobtitles = ['Manager', 'Frontend Dev', 'Backend Dev']
+
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
@@ -36,9 +38,10 @@ def load_user(user_id):
     return user
 
 # Automatically tear down SQLAlchemy.
-
 @app.teardown_request
 def shutdown_session(exception=None):
+    print 'Tearing down SQLAlchemy'
+    db_session.commit()
     db_session.remove()
 
 
@@ -51,18 +54,27 @@ def shutdown_session(exception=None):
 def home():
     print current_user.excellent_skills
     print current_user.extra_skills
+    print current_user.titles
+    print current_user.contact_email
+    print current_user.company_name
+    print current_user.amount_meetings
+
+    errors = []
 
     form = CompanyForm(request.form)
     if request.method == 'POST':
         if form.validate():
             excellent_skills = form.excellent_skills.data
             extra_skills = form.extra_skills.data
+            titles = form.titles.data
+            amount_meetings = form.amount_meetings.data
 
-            u = User.query.filter_by(id=current_user.id).first()
-            u.excellent_skills = json.dumps(excellent_skills)
-            u.extra_skills = json.dumps(extra_skills)
-
-            print json.dumps(excellent_skills)
+            current_user.company_name = form.name.data
+            current_user.contact_email = form.contact_email.data
+            current_user.excellent_skills = json.dumps(excellent_skills)
+            current_user.extra_skills = json.dumps(extra_skills)
+            current_user.titles = json.dumps(titles)
+            current_user.amount_meetings = amount_meetings
 
             try:
                 db.session.commit()
@@ -70,10 +82,7 @@ def home():
                 print 'Commit failed'
                 db.session.rollback()
                 print str(e)
-            #db.session.commit()
-
-            print current_user.excellent_skills
-            print current_user.extra_skills
+                errors.append('Database commit failure.')
 
         else:
             print 'Form did not validate:'
@@ -83,8 +92,8 @@ def home():
 
     form.excellent_skills.choices = [(g, g) for g in skills]
     form.extra_skills.choices = [(g, g) for g in skills]
-
-    return render_template('pages/placeholder.home.html', form=form)
+    form.titles.choices = [(g, g) for g in jobtitles]
+    return render_template('pages/placeholder.home.html', form=form, errors=errors)
 
 
 @app.route('/about')

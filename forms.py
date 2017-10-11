@@ -1,5 +1,5 @@
 from flask_wtf import Form
-from wtforms import TextField, PasswordField, SelectMultipleField
+from wtforms import TextField, PasswordField, SelectMultipleField, IntegerField
 from wtforms.validators import DataRequired, EqualTo, Length
 
 # Multiselect field without validation
@@ -18,6 +18,11 @@ class CompanyForm(Form):
     )
     excellent_skills = NoValidationSelectMultipleField('Skills applicant should excel at')
     extra_skills = NoValidationSelectMultipleField('Skills applicant should excel at')
+    titles = NoValidationSelectMultipleField('Job titles you are hiring for')
+
+    amount_meetings = IntegerField('How many meetings with applicants do you wish to have?')
+
+    #applicant_properties = NoValidationSelectMultipleField('Skills applicant should excel at')
 
 class RegisterForm(Form):
     name = TextField(

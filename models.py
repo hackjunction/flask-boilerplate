@@ -22,9 +22,14 @@ class User(Base):
     email = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(30))
 
+    company_name = db.Column(db.String(120), unique=True)
+    contact_email = db.Column(db.String(120), unique=False)
+
     # Desired applicant data
-    excellent_skills = db.Column(db.Text)
-    extra_skills = db.Column(db.Text)
+    excellent_skills = db.Column(db.Text())
+    extra_skills = db.Column(db.Text())
+    titles = db.Column(db.Text())
+    amount_meetings = db.Column(db.Integer())
 
     def __init__(self, name, password, email):
         self.name = name
