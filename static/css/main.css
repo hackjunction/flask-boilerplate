@@ -11,6 +11,12 @@
 html {
   overflow-y: scroll;
 }
+
+.container {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
 h1 {
 	font-family: Montserrat, sans-serif;
 	font-weight: 900;
@@ -156,6 +162,11 @@ a:hover {
 .ui.input {
   display: inherit;
   color: #FFF;
+}
+
+.alert-warning {
+  margin-top: 10px;
+  max-height: 2.71428571em;
 }
 
 /* Various other styles end */
