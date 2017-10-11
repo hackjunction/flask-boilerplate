@@ -69,11 +69,15 @@ Modernizr.load({
           <ul class="nav navbar-nav">
             <li {% if request.endpoint == 'home' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Home</a></li>
             <li {% if request.endpoint == 'about' %} class="active" {% endif %}><a href="{{ url_for('about') }}">About</a></li>
-            
+
           </ul>
           <ul class="nav navbar-nav pull-right">
+            {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
             <li><a href="{{ url_for('register') }}">Signup</a></li>
             <li><a href="{{ url_for('login') }}">Login</a></li>
+            {% endif %}
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -100,7 +104,7 @@ Modernizr.load({
     </div>
 
     <div class="col-sm-2"></div>
-      
+
     </main>
 
   </div>

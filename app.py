@@ -110,12 +110,12 @@ def home():
     form.extra_skills.choices = [(g, g) for g in skills]
     form.titles.choices = [(g, g) for g in jobtitles]
 
-    return render_template('pages/placeholder.home.html', form=form, errors=errors)
+    return render_template('pages/home.html', form=form, errors=errors)
 
 
 @app.route('/about')
 def about():
-    return render_template('pages/placeholder.about.html')
+    return render_template('pages/about.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])
