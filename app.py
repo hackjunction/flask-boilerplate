@@ -22,7 +22,7 @@ app.config.from_object('config')
 db = SQLAlchemy(app)
 
 # Gotta import this only after setting up the app
-from models import User
+import models
 
 skills = ['Unix', 'Mac', 'Linux']
 jobtitles = ['Manager', 'Frontend Dev', 'Backend Dev']
@@ -36,15 +36,16 @@ bcrypt = Bcrypt(app)
 # Login manager user loade
 @login_manager.user_loader
 def load_user(user_id):
-    user = User.query.filter_by(id=user_id).first()
+    user = models.User.query.filter_by(id=user_id).first()
     return user
 
 # Automatically tear down SQLAlchemy.
+
 @app.teardown_request
 def shutdown_session(exception=None):
     print 'Tearing down SQLAlchemy'
-    db_session.commit()
-    db_session.remove()
+    db.session.commit()
+    db.session.remove()
 
 
 #----------------------------------------------------------------------------#
@@ -132,7 +133,7 @@ def login():
         username = form.name.data
         password = form.password.data
 
-        user = User.query.filter_by(name=username).first()
+        user = models.User.query.filter_by(name=username).first()
         if not user:
             print 'User not found'
             errors.append('Invalid login')
@@ -169,7 +170,7 @@ def register():
         email = form.email.data
 
         hashed_pass = bcrypt.generate_password_hash(password)
-        user = User(username, hashed_pass, email)
+        user = models.User(username, hashed_pass, email)
         if user:
             db.session.add(user)
             db.session.commit()
@@ -216,5 +217,4 @@ if not app.debug:
 #----------------------------------------------------------------------------#
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=5000)

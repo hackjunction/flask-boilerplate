@@ -1,19 +1,8 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String
 from app import db
 
-engine = create_engine('sqlite:///database.db', echo=True)
-db_session = scoped_session(sessionmaker(autocommit=False,
-                                         autoflush=False,
-                                         bind=engine))
-
-Base = declarative_base()
-Base.query = db_session.query_property()
-
 # Set your classes here.
-class User(Base):
+class User(db.Model):
     __tablename__ = 'Users'
 
     # Basic fields
@@ -50,8 +39,3 @@ class User(Base):
 
     def get_id(self):
         return unicode(self.id)  # python 2
-
-
-
-# Create tables.
-Base.metadata.create_all(bind=engine)
