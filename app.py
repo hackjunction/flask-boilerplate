@@ -130,17 +130,15 @@ def login():
     form = LoginForm(request.form)
     errors = []
     if form.validate_on_submit():
-        username = form.name.data
+        email = form.email.data
         password = form.password.data
 
-        user = models.User.query.filter_by(name=username).first()
+        user = models.User.query.filter_by(email=email).first()
         if not user:
-            print 'User not found'
             errors.append('Invalid login')
             return render_template('forms/login.html', form=form, errors=errors)
 
         elif not bcrypt.check_password_hash(user.password, password):
-            print 'Invalid password'
             errors.append('Invalid login')
 
         else:
