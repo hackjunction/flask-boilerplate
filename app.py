@@ -189,6 +189,7 @@ def forgot():
     form = ForgotForm(request.form)
     return render_template('forms/forgot.html', form=form)
 
+
 # Error handlers.
 
 '''
