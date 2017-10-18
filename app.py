@@ -10,7 +10,7 @@ import logging
 from logging import Formatter, FileHandler
 from forms import *
 from functools import wraps
-from models import *
+from models import User
 import os
 import json
 
