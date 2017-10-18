@@ -6,11 +6,15 @@
   <h1>{{ current_user.name }}, enter your company data</h1>
 </div>
 <div align="center">
+  {% if success %}
+  <div class="alert alert-success">
+    <strong>Success!</strong> Your data has been saved. Sit tight for schedule!
+  </div>
+  {%endif %}
   <p class="lead">Enter data about your company's desired applicant.</p>
 </div>
 <div class="ui stackable page grid">
   <div class="column">
-
     <form method="post" class="form" action="/">
       {{ form.csrf_token }}
       <h3 class="form-heading">Company data</h3>
@@ -24,15 +28,15 @@
       </div>
       <div class="field input">
         <label>Excellent skills</label>
-        {{ form.excellent_skills(class_ = 'form-control ui multiple selection dropdown', placeholder = form.excellent_skills.label.text, required = true, autofocus = true) }}
+        {{ form.excellent_skills(class_ = 'form-control ui multiple selection dropdown excellent', placeholder = form.excellent_skills.label.text, required = true, autofocus = true) }}
       </div>
       <div class="field">
         <label>Nice to have skills</label>
-        {{ form.extra_skills(class_ = 'form-control ui multiple selection dropdown', placeholder = form.extra_skills.label.text, required = true, autofocus = true) }}
+        {{ form.extra_skills(class_ = 'form-control ui multiple selection dropdown nice', placeholder = form.extra_skills.label.text, required = true, autofocus = true) }}
       </div>
       <div class="field">
         <label>Titles you are hiring for</label>
-        {{ form.titles(class_ = 'form-control ui multiple selection dropdown', placeholder = form.titles.label.text, required = true, autofocus = true) }}
+        {{ form.titles(class_ = 'form-control ui multiple selection dropdown title', placeholder = form.titles.label.text, required = true, autofocus = true) }}
       </div>
       <div class="field">
         <label>Finally, the amount of meetings you wish to have with your applicants!</label>
@@ -44,11 +48,59 @@
 </div>
 
 <script>
-  $('.ui.dropdown').dropdown({
+  // Hey, I'm doing this for free, don't judge me!
+  var changing = false;
+  var skills = {{ skills|safe }};
+
+  $('.ui.dropdown.nice').dropdown({
     onChange: function(value, text, $choice){
-        console.log($('.ui.dropdown').dropdown('get value'));
-  }
+      if (changing) return;
+      changing = true;
+
+      var excellentSelected = $('.ui.dropdown.excellent').dropdown('get value');
+      var niceSelected = $('.ui.dropdown.nice').dropdown('get value');
+
+      var arr = [];
+      for (var i = 0; i < skills.length; i++) {
+        var s = skills[i];
+        if (niceSelected.indexOf(s) > -1) continue;
+        arr.push({value: s, name: s});
+      }
+
+      $('.ui.dropdown.excellent')
+        .dropdown('change values', arr);
+      $('.ui.dropdown.excellent')
+        .dropdown('set selected', excellentSelected);
+
+      changing = false;
+    }
   });
+
+  $('.ui.dropdown.excellent').dropdown({
+    onChange: function(value, text, $choice){
+      if (changing) return;
+      changing = true;
+
+      var excellentSelected = $('.ui.dropdown.excellent').dropdown('get value');
+      var niceSelected = $('.ui.dropdown.nice').dropdown('get value');
+
+      var arr = [];
+      for (var i = 0; i < skills.length; i++) {
+        var s = skills[i];
+        if (excellentSelected.indexOf(s) > -1) continue;
+        arr.push({value: s, name: s});
+      }
+
+      $('.ui.dropdown.nice')
+        .dropdown('change values', arr);
+      $('.ui.dropdown.nice')
+        .dropdown('set selected', excellentSelected);
+
+      changing = false;
+    }
+  });
+
+  $('.ui.dropdown.title').dropdown();
 </script>
 
 

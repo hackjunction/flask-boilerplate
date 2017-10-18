@@ -70,7 +70,7 @@ def page_not_found(e):
 @login_required
 def home():
     errors = []
-
+    success = False
     form = CompanyForm(request.form)
     if request.method == 'POST':
         if form.validate():
@@ -88,6 +88,7 @@ def home():
 
             try:
                 db.session.commit()
+                success = True
             except Exception, e:
                 print 'Commit failed'
                 db.session.rollback()
@@ -120,7 +121,8 @@ def home():
     form.extra_skills.choices = [(g, g) for g in skills]
     form.titles.choices = [(g, g) for g in jobtitles]
 
-    return render_template('pages/home.html', form=form, errors=errors)
+    return render_template('pages/home.html', form=form, errors=errors,
+                           skills=skills, success=success)
 
 
 @app.route('/about')
