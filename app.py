@@ -24,8 +24,18 @@ db = SQLAlchemy(app)
 # Gotta import this only after setting up the app
 import models
 
-skills = ['Unix', 'Mac', 'Linux']
-jobtitles = ['Manager', 'Frontend Dev', 'Backend Dev']
+skills = ['AngularJS', 'Assembly', 'Bash', 'C', 'C#', 'C++', 'Clojure',
+           'CoffeeScript', 'CSS', 'Excel', 'Go', 'Groovy', 'Haskell', 'HTML',
+           'Java', 'JavaScript', 'Kotlin', 'Lua', 'Matlab', 'Node.js',
+           'Objective-C', 'Perl', 'PHP', 'PowerPoint', 'Python', 'Qt', 'R', 'React',
+           'Ruby', 'Scala', 'SQL', 'Swift', 'TypeScript', 'VBA', 'VB.NET',
+           'Visual Basic 6', '.NET Core', 'Other']
+
+jobtitles = ['Frontend Developer', 'Backend Developer', 'Full-Stack Developer',
+             'Manager / Executive', 'Mobile Developer', 'Data Scientist',
+             'Entrepreneur', 'Analyst', 'Machine Learning Developer', 'Industrial Designer',
+             'Web Design', 'Product Design', 'Other design related', 'Server Specialist',
+             'IT', 'Hardware Engineer']
 
 login_manager = LoginManager()
 login_manager.init_app(app)
