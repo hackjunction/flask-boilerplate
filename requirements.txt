@@ -8,6 +8,7 @@ Flask-Bcrypt
 gunicorn
 Flask-Script
 Flask-Migrate
+psycopg2
 # ecdsa
 # paramiko
 # pycrypto
