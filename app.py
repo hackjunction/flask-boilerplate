@@ -10,7 +10,6 @@ import logging
 from logging import Formatter, FileHandler
 from forms import *
 from functools import wraps
-from models import User
 import os
 import json
 
@@ -21,6 +20,9 @@ import json
 app = Flask(__name__)
 app.config.from_object('config')
 db = SQLAlchemy(app)
+
+# Gotta import this only after setting up the app
+from models import User
 
 skills = ['Unix', 'Mac', 'Linux']
 jobtitles = ['Manager', 'Frontend Dev', 'Backend Dev']
