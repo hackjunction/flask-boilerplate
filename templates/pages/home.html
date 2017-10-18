@@ -1,9 +1,7 @@
 {% extends 'layouts/main.html' %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<script>
-  $('.ui.dropdown') .dropdown();
-</script>
+
 <div class="page-header">
   <h1>{{ current_user.name }}, enter your company data</h1>
 </div>
@@ -45,7 +43,13 @@
   </div>
 </div>
 
-
+<script>
+  $('.ui.dropdown').dropdown({
+    onChange: function(value, text, $choice){
+        console.log($('.ui.dropdown').dropdown('get value'));
+  }
+  });
+</script>
 
 
 {% endblock %}

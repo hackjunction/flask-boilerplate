@@ -69,13 +69,6 @@ def page_not_found(e):
 @app.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
-    print current_user.excellent_skills
-    print current_user.extra_skills
-    print current_user.titles
-    print current_user.contact_email
-    print current_user.company_name
-    print current_user.amount_meetings
-
     errors = []
 
     form = CompanyForm(request.form)
