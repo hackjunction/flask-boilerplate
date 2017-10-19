@@ -20,6 +20,7 @@
 <link type="text/css" rel="stylesheet" href="/static/css/main.responsive.css" />
 <link type="text/css" rel="stylesheet" href="/static/css/main.quickfix.css" />
 
+
 <!-- /styles -->
 
 <!-- favicons -->
@@ -38,6 +39,11 @@
 <script type="text/javascript" src="/static/js/libs/bootstrap-3.1.1.min.js" defer></script>
 <script type="text/javascript" src="/static/js/plugins.js" defer></script>
 <script type="text/javascript" src="/static/js/script.js" defer></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+
+
 <!-- Google Analytics - Change UA-XXXXX-X to be your site's ID -->
 <script>
 window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
@@ -68,22 +74,26 @@ Modernizr.load({
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li {% if request.endpoint == 'home' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Home</a></li>
-            <li {% if request.endpoint == 'about' %} class="active" {% endif %}><a href="{{ url_for('about') }}">About</a></li>
-
+            <li id="nav_1" {% if request.endpoint == 'home' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Form</a></li>
+            <li id="nav_2" {% if request.endpoint == 'about' %} class="active" {% endif %}><a href="{{ url_for('about') }}">Info</a></li>
           </ul>
+          
+          <div id="nav-logo">
+            <img class="" src="https://register.hackjunction.com/assets/images/logo2.svg">
+          </div>
+
           <ul class="nav navbar-nav pull-right">
             {% if current_user.is_authenticated %}
-            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            <li class="nav_3"><a href="{{ url_for('logout') }}">Logout</a></li>
             {% else %}
-            <li><a href="{{ url_for('register') }}">Signup</a></li>
-            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li class="nav_3"><a href="{{ url_for('register') }}">Signup</a></li>
+            <li class="nav_3"><a href="{{ url_for('login') }}">Login</a></li>
             {% endif %}
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
-
+    <div id="trigger1"></div>
     <!-- Begin page content -->
     <main id="content" role="main" class="container">
 

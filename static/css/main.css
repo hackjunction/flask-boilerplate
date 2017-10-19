@@ -169,6 +169,73 @@ a:hover {
   max-height: 2.71428571em;
 }
 
+.head-content {
+  margin-bottom: 50px;
+}
+
+.underline-page-header {
+  border-bottom: 10px solid #35E2DF;
+  margin-top: 0px;
+  margin-bottom: 10px; 
+  width: max-content;
+  line-height: 45px;
+  
+}
+.page-header {
+  border-bottom: none;
+}
+
+.ui.page.grid {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.ui.grid>.column:not(.row) {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.lead {
+  margin-bottom: 10px;
+}
+label {
+  font-weight: 400;
+}
+#nav-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(3);
+}
+
+
+.main-body-content {
+  visibility: hidden;
+}
+
+.page-header {
+  visibility: hidden;
+}
+
+#nav_1 {
+  visibility: hidden;
+}
+#nav_2 {
+  visibility: hidden;
+}
+.nav_3 {
+  visibility: hidden;
+}
+
+/*
+transform: translate(-50%, 50%) scale(4);
+transform: translate(-50%, -50%) scale(1);
+kaikki muu hidden
+
+
+
+* {
+  visibility: hidden;
+}
+
 /* Various other styles end */
 
 
