@@ -207,36 +207,7 @@ label {
 }
 
 
-.main-body-content {
-  visibility: hidden;
-}
 
-.page-header {
-  visibility: hidden;
-}
-
-#nav_1 {
-  visibility: hidden;
-}
-#nav_2 {
-  visibility: hidden;
-}
-.nav_3 {
-  visibility: hidden;
-}
-
-/*
-transform: translate(-50%, 50%) scale(4);
-transform: translate(-50%, -50%) scale(1);
-kaikki muu hidden
-
-
-
-* {
-  visibility: hidden;
-}
-
-/* Various other styles end */
 
 
 
