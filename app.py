@@ -78,13 +78,16 @@ def home():
             extra_skills = form.extra_skills.data
             titles = form.titles.data
             amount_meetings = form.amount_meetings.data
+            personnel_present = form.personnel_present.data
+            time_present = form.time_present.data
 
             current_user.company_name = form.name.data
             current_user.contact_email = form.contact_email.data
             current_user.excellent_skills = json.dumps(excellent_skills)
             current_user.extra_skills = json.dumps(extra_skills)
-            current_user.titles = json.dumps(titles)
             current_user.amount_meetings = amount_meetings
+            current_user.personnel_present = personnel_present
+            current_user.time_present = time_present
 
             try:
                 db.session.commit()
@@ -109,13 +112,15 @@ def home():
             form.contact_email.data = current_user.contact_email
             form.excellent_skills.data = json.loads(current_user.excellent_skills)
             form.extra_skills.data = json.loads(current_user.extra_skills)
-            form.titles.data = json.loads(current_user.titles)
             form.amount_meetings.data = current_user.amount_meetings
+            form.personnel_present.data = current_user.personnel_present
+            form.time_present.data = current_user.time_present
         else:
             # Set a couple of default values if user has never submitted form
             form.name.data = current_user.name
             form.contact_email.data = current_user.email
             form.amount_meetings.data = 20
+            form.personnel_present.data = 20
 
     form.excellent_skills.choices = [(g, g) for g in skills]
     form.extra_skills.choices = [(g, g) for g in skills]

@@ -24,23 +24,18 @@
         {{ form.contact_email(class_ = 'form-control', placeholder = form.contact_email.label.text, required = true, autofocus = true) }}
       </div>
 
-      <!-- <div class="field">
-        <label>Titles that you are hiring for</label>
-        {{ form.titles(class_ = 'form-control ui multiple selection dropdown', placeholder = form.titles.label.text, required = true, autofocus = true) }}
-      </div> -->
-
-      <div class="field">
+      <div class="field ui input">
         <label>How many persons will you have available for the Meeting Area on Saturday?</label>
-        {{ form.amount_meetings(class_ = 'form-control ui multiple selection dropdown', placeholder = form.amount_meetings.label.text, required = true, autofocus = true) }}
+        {{ form.personnel_present(class_ = 'form-control', placeholder = form.personnel_present.label.text, required = true, autofocus = true) }}
       </div>
-      <div class="field">
+      <div class="field ui input">
         <label>What time will you be present at the Meeting Area?</label>
-        {{ form.amount_meetings(class_ = 'form-control ui multiple selection dropdown', placeholder = form.amount_meetings.label.text, required = true, autofocus = true) }}
+        {{ form.time_present(class_ = 'form-control', placeholder = form.time_present.label.text, required = true, autofocus = true) }}
       </div>
 
-      <div class="field">
+      <div class="field ui input">
         <label>How many meetings with our participants would you like to have?</label>
-        {{ form.amount_meetings(class_ = 'form-control ui multiple selection dropdown', placeholder = form.amount_meetings.label.text, required = true, autofocus = true) }}
+        {{ form.amount_meetings(class_ = 'form-control', placeholder = form.amount_meetings.label.text, required = true, autofocus = true) }}
       </div>
 
       <p class="">Next, we'll need information about your companys preferences. Think about the programming languages necessary for your employees and fill out the skills to create a future employee dream profile.</p>

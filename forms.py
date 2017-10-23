@@ -13,6 +13,11 @@ class CompanyForm(Form):
     name = TextField(
         'Company Name', validators=[DataRequired(), Length(min=1, max=50)]
     )
+
+    time_present = TextField(
+        'e.g. 10-18, lunch at 13', validators=[DataRequired(), Length(min=1, max=100)]
+    )
+
     contact_email = TextField(
         'Contact Email', validators=[DataRequired(), Length(min=6, max=40)]
     )
@@ -21,6 +26,7 @@ class CompanyForm(Form):
     titles = NoValidationSelectMultipleField('Job titles you are hiring for')
 
     amount_meetings = IntegerField('How many meetings with applicants do you wish to have?')
+    personnel_present = IntegerField('How many meetings with applicants do you wish to have?')
 
     #applicant_properties = NoValidationSelectMultipleField('Skills applicant should excel at')
 

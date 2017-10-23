@@ -17,8 +17,9 @@ class User(db.Model):
     # Desired applicant data
     excellent_skills = db.Column(db.Text())
     extra_skills = db.Column(db.Text())
-    titles = db.Column(db.Text())
     amount_meetings = db.Column(db.Integer())
+    personnel_present = db.Column(db.Integer())
+    time_present = db.Column(db.String(100))
 
     def __init__(self, name, password, email):
         self.name = name
