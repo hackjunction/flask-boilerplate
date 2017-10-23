@@ -5,6 +5,8 @@
  */
 
 
+
+
 /*****************************************************************************
  * Main elements
  ****************************************************************************/
@@ -13,9 +15,10 @@ html {
 }
 
 .container {
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 50px!important;
+  padding-bottom: 50px!important;
 }
+
 
 h1 {
 	font-family: Montserrat, sans-serif;
@@ -206,8 +209,49 @@ label {
   transform: translate(-50%, -50%) scale(3);
 }
 
+.navbar-nav {
+  flex-direction: row;
+  margin-left: 10px;
+}
+
+#nav_1, #nav_1 {
+  float: left;
+  display: block;
+}
+
+.main-body-content {
+  margin-top: 20px!important;
+}
 
 
 
+@media screen and (max-width: 600px) {
+   #nav-logo {
+        visibility:hidden;
+    }
+}
 
+.ui.grid>.column:only-child, .ui.grid>.row>.column:only-child {
+  padding-top: 0px;
+}
+
+
+
+/*@include media-breakpoint-up(sm) {
+  html {
+    font-size: 16px;
+  }
+}*/
+
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 24px!important;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  h1 {
+    font-size: 32px;
+  }
+}
 

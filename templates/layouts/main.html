@@ -70,24 +70,18 @@ Modernizr.load({
     <!-- Fixed navbar -->
     <div class="navbar navbar-default">
       <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li id="nav_1" {% if request.endpoint == 'home' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Form</a></li>
-            <li id="nav_2" {% if request.endpoint == 'about' %} class="active" {% endif %}><a href="{{ url_for('about') }}">Info</a></li>
+       
+        <div class="navbar-collapse">
+          <ul class="nav navbar-nav" style="float:left;">
+            <li style="float:right;" id="nav_1" {% if request.endpoint == 'home' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Form</a></li>
+            <li style="float:right;margin-left:10px;" id="nav_2" {% if request.endpoint == 'about' %} class="active" {% endif %}><a href="{{ url_for('about') }}">Info</a></li>
           </ul>
           
           <div id="nav-logo">
             <img class="" src="https://register.hackjunction.com/assets/images/logo2.svg">
           </div>
 
-          <ul class="nav navbar-nav pull-right">
+          <ul class="nav navbar-nav pull-right" style="float:right;" >
             {% if current_user.is_authenticated %}
             <li class="nav_3"><a href="{{ url_for('logout') }}">Logout</a></li>
             {% else %}
@@ -101,7 +95,7 @@ Modernizr.load({
     <div id="trigger1"></div>
     <!-- Begin page content -->
     <main id="content" role="main" class="container">
-
+    <div class="row">
     <div class="col-sm-2"></div>
     <div class="col-sm-8">
 
@@ -120,6 +114,7 @@ Modernizr.load({
     </div>
 
     <div class="col-sm-2"></div>
+    </div>
 
     </main>
 
