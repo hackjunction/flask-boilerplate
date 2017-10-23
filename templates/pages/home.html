@@ -1,9 +1,8 @@
 {% extends 'layouts/main.html' %}
 {% block title %}Home{% endblock %}
 {% block content %}
-
 <div class="page-header">
-  <h1>{{ current_user.name }}, enter your company data</h1>
+  <h1 class="underline-page-header">MEETING AREA FORM</h1>
 </div>
 <div align="center">
   {% if success %}
@@ -11,21 +10,42 @@
     <strong>Success!</strong> Your data has been saved. Sit tight for schedule!
   </div>
   {%endif %}
-  <p class="lead">Enter data about your company's desired applicant.</p>
 </div>
-<div class="ui stackable page grid">
+<div class="ui stackable page grid main-body-content">
   <div class="column">
     <form method="post" class="form" action="/">
       {{ form.csrf_token }}
-      <h3 class="form-heading">Company data</h3>
       <div class="field ui input">
-        <label>Company Name*</label>
+        <label>Company Name</label>
         {{ form.name(class_ = 'form-control first-input', placeholder = form.name.label.text, required = true, autofocus = true) }}
       </div>
       <div class="field ui input">
         <label>Contact email</label>
         {{ form.contact_email(class_ = 'form-control', placeholder = form.contact_email.label.text, required = true, autofocus = true) }}
       </div>
+
+      <!-- <div class="field">
+        <label>Titles that you are hiring for</label>
+        {{ form.titles(class_ = 'form-control ui multiple selection dropdown', placeholder = form.titles.label.text, required = true, autofocus = true) }}
+      </div> -->
+
+      <div class="field">
+        <label>How many persons will you have available for the Meeting Area on Saturday?</label>
+        {{ form.amount_meetings(class_ = 'form-control ui multiple selection dropdown', placeholder = form.amount_meetings.label.text, required = true, autofocus = true) }}
+      </div>
+      <div class="field">
+        <label>What time will you be present at the Meeting Area?</label>
+        {{ form.amount_meetings(class_ = 'form-control ui multiple selection dropdown', placeholder = form.amount_meetings.label.text, required = true, autofocus = true) }}
+      </div>
+
+      <div class="field">
+        <label>How many meetings with our participants would you like to have?</label>
+        {{ form.amount_meetings(class_ = 'form-control ui multiple selection dropdown', placeholder = form.amount_meetings.label.text, required = true, autofocus = true) }}
+      </div>
+
+      <p class="">Next, we'll need information about your companys preferences. Think about the programming languages necessary for your employees and fill out the skills to create a future employee dream profile.</p>
+
+      <!-- NÄÄ PITÄÄ YHTENÄISTÄÄ, OON VAIHDELLU NIMIÄ JNE -->
       <div class="field input">
         <label>Excellent skills</label>
         {{ form.excellent_skills(class_ = 'form-control ui multiple selection dropdown excellent', placeholder = form.excellent_skills.label.text, required = true, autofocus = true) }}
@@ -33,14 +53,6 @@
       <div class="field">
         <label>Nice to have skills</label>
         {{ form.extra_skills(class_ = 'form-control ui multiple selection dropdown nice', placeholder = form.extra_skills.label.text, required = true, autofocus = true) }}
-      </div>
-      <div class="field">
-        <label>Titles you are hiring for</label>
-        {{ form.titles(class_ = 'form-control ui multiple selection dropdown title', placeholder = form.titles.label.text, required = true, autofocus = true) }}
-      </div>
-      <div class="field">
-        <label>Finally, the amount of meetings you wish to have with your applicants!</label>
-        {{ form.amount_meetings(class_ = 'form-control ui multiple selection dropdown', placeholder = form.amount_meetings.label.text, required = true, autofocus = true) }}
       </div>
       <input type="submit" value="Submit" class="button-sea-serpent">
     </form>
