@@ -6,13 +6,13 @@
     <h3 class="form-heading">Login</h3>
     {% for field in form.errors %}
       {% for error in form.errors[field] %}
-          <div class="alert alert-error">
+          <div class="alert alert-danger">
               {{error}}
           </div>
       {% endfor %}
     {% endfor %}
     {% for error in errors %}
-        <div class="alert alert-error">
+        <div class="alert alert-danger">
             {{error}}
         </div>
     {% endfor %}
@@ -25,8 +25,7 @@
         <label class="form-label">Password</label>
     	{{ form.password(class_ = 'form-control last-input', required = true) }}
 	</div>
-    <p class="pull-left"><a href="{{ url_for('forgot') }}">Forgot Password?</a></p>
-    <p class="pull-right"><a href="{{ url_for('register') }}">Register</a></p>
+    <p class="pull-left"><a href="{{ url_for('register') }}">Register</a></p>
     <input type="submit" value="Submit" class="button-sea-serpent">
 
   </form>

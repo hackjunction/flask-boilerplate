@@ -15,7 +15,7 @@ class CompanyForm(Form):
     )
 
     time_present = TextField(
-        'e.g. 10-18, lunch at 13', validators=[DataRequired(), Length(min=1, max=100)]
+        'Time present', validators=[DataRequired(), Length(min=1, max=100)]
     )
 
     contact_email = TextField(

@@ -2,7 +2,7 @@
 # Imports
 #----------------------------------------------------------------------------#
 
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
@@ -58,6 +58,14 @@ def shutdown_session(exception=None):
     db.session.remove()
 
 
+def flash_errors(form):
+    for field, errors in form.errors.items():
+        for error in errors:
+            flash(u"Error in the %s field - %s" % (
+                getattr(form, field).label.text,
+                error
+            ))
+            
 #----------------------------------------------------------------------------#
 # Controllers.
 #----------------------------------------------------------------------------#
@@ -101,9 +109,7 @@ def home():
 
         else:
             print 'Form did not validate:'
-            for fieldName, errorMessages in form.errors.items():
-                for err in errorMessages:
-                    print err
+            flash_errors(form)
 
     else:
         if (current_user.company_name is not None):
@@ -177,15 +183,24 @@ def register():
         password = form.password.data
         email = form.email.data
 
-        hashed_pass = bcrypt.generate_password_hash(password)
-        user = models.User(username, hashed_pass, email)
+        user = models.User.query.filter_by(email=email).first()
         if user:
-            db.session.add(user)
-            db.session.commit()
-            login_user(user)
-            return redirect(url_for('home'))
-        else:
-            errors.append('Invalid reg')
+            errors.append('User with this email already exists.')
+
+        user = models.User.query.filter_by(name=username).first()
+        if user:
+            errors.append('User with this username already exists.')
+
+        if not user:
+            hashed_pass = bcrypt.generate_password_hash(password)
+            user = models.User(username, hashed_pass, email)
+            if user:
+                db.session.add(user)
+                db.session.commit()
+                login_user(user)
+                return redirect(url_for('home'))
+            else:
+                errors.append('Invalid reg')
 
     else:
         for fieldName, errorMessages in form.errors.items():

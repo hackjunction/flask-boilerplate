@@ -11,6 +11,22 @@
   </div>
   {%endif %}
 </div>
+<br>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="alert alert-danger">
+  <strong>There were errors in the form:</strong><br>
+  <ul class=flashes>
+  {% for message in messages %}
+    <li>{{ message }}</li>
+  {% endfor %}
+  </ul>
+</div>
+
+{% endif %}
+{% endwith %}
+
+
 <div class="ui stackable page grid main-body-content">
   <div class="column">
     <form method="post" class="form" action="/">
@@ -26,7 +42,7 @@
 
       <div class="field ui input">
         <label>How many persons will you have available for the Meeting Area on Saturday?</label>
-        {{ form.personnel_present(class_ = 'form-control', placeholder = form.personnel_present.label.text, required = true, autofocus = true) }}
+        {{ form.personnel_present(class_ = 'form-control', placeholder = 'e.g. 10-18, lunch at 13', required = true, autofocus = true) }}
       </div>
       <div class="field ui input">
         <label>What time will you be present at the Meeting Area?</label>

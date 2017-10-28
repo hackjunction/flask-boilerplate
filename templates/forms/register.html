@@ -7,13 +7,13 @@
     <h3 class="form-heading">Register</h3>
     {% for field in form.errors %}
       {% for error in form.errors[field] %}
-          <div class="alert alert-error">
+          <div class="alert alert-danger">
               {{error}}
           </div>
       {% endfor %}
     {% endfor %}
     {% for error in errors %}
-        <div class="alert alert-error">
+        <div class="alert alert-danger">
             {{error}}
         </div>
     {% endfor %}
