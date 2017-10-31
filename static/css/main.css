@@ -71,7 +71,7 @@ a {
     line-height: 1.21428571em;
     padding: .67857143em 1em;
     font-size: 1em;
-    background: #232323;
+    background: #fff;
     border: 1px solid #fff;
     color: #fff;
     box-shadow: 0 0 0 0 transparent inset;
@@ -201,7 +201,7 @@ a:hover {
 }
 label {
   font-weight: 400;
-  margin-top: 30px;
+  margin-top: 20px;
   
 }
 .form-info-text {
@@ -260,4 +260,27 @@ label {
     font-size: 32px;
   }
 }
+
+.radio-list{
+  list-style: none;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+li>label {
+  margin-left: 10px;
+  margin-top: 0px;
+}
+
+.form_text_area{
+  height: 170px;
+  resize: none;
+}
+
+
+
+
+
+
 

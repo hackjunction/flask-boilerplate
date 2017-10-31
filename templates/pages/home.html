@@ -38,12 +38,13 @@
       <div class="field ui input">
         <label>Contact email</label>
         {{ form.contact_email(class_ = 'form-control', placeholder = form.contact_email.label.text, required = true, autofocus = true) }}
+
       </div>
 
       <div class="field ui input">
 
         <label>How many persons will you have available for the Meeting Area on Saturday? Maximum amount of personnel for company is specified in the contract.Please make sure that you have badges available on Saturday.</label>
-        {{ form.personnel_present(class_ = 'form-control', placeholder = '', required = true, autofocus = true) }}
+        {{ form.personnel_present(class_ = 'form-control', placeholder = form.personnel_present.label.text, required = true, autofocus = true) }}
       </div>
       <div class="field ui input">
         <label>What time will you be present at the Meeting Area?</label>
@@ -51,33 +52,29 @@
       </div>
       <div class="field ui input">
         <label>What is optimal amount of meetings you would like to have with our participants on Saturday? We are mapping the needs of our partners and this number will not automatically translate to actual meetings at the event.</label>
-        <!-- vaihtohdot: INT -->
+
         {{ form.amount_meetings(class_ = 'form-control', placeholder = form.amount_meetings.label.text, required = true, autofocus = true) }}
       </div>
 
-      <!-- UUSI ALKAA-->
 
       <div class="field ui input">
         <label>Describe your company. What stregnths do you have and why should developers be interested in you?</label>
-        <!-- vaihtohdot: Part time, Full time, Both -->
-        {{ form.amount_meetings(class_ = 'form-control', placeholder = form.amount_meetings.label.text, required = true, autofocus = true) }}
+        {{ form.company_strengths(class_ = 'form-control form_text_area', placeholder = form.company_strengths.label.text, required = true, autofocus = true) }}
       </div>
+
+
+      <p class="form-info-text">Next, we'll need information about your companys preferences for the best possible matching between your company and our participants.</p>
 
       <div class="field ui input">
         <label>Are you looking full time or part time employees?</label>
-        <!-- vaihtoehdot: Part time, Full time, Both -->
-        {{ form.amount_meetings(class_ = 'form-control', placeholder = form.amount_meetings.label.text, required = true, autofocus = true) }}
+        {{ form.job_nature(class_ = 'form-control radio-list', placeholder = form.job_nature.label.text, required = true, autofocus = true) }}
       </div>
 
       <div class="field ui input">
-        <!-- vaihtoehdot: 1 year, 1-2 years, 3-5 years, 5+ -->
         <label>Wished coding experience in years?</label>
-        {{ form.amount_meetings(class_ = 'form-control', placeholder = form.amount_meetings.label.text, required = true, autofocus = true) }}
+        {{ form.experience_in_years(class_ = 'form-control radio-list', placeholder = form.experience_in_years.label.text, required = true, autofocus = true) }}
       </div>
-      <!-- UUSI LOPPUU -->
 
-
-      <p class="form-info-text">Next, we'll need information about your companys preferences. Think about the programming languages necessary for your employees and fill out the skills to create a future employee dream profile.</p>
 
       <div class="field input">
         <label>Excellent skills</label>
@@ -87,19 +84,20 @@
         <label>Nice to have skills</label>
         {{ form.extra_skills(class_ = 'form-control ui multiple selection dropdown nice', placeholder = form.extra_skills.label.text, required = true, autofocus = true) }}
       </div>
+      <div class="field ui input">
+        <label>Here you can further describe the skills and qualities needed for the job.</label>
+        {{ form.skills_description(class_ = 'form-control form_text_area', placeholder = form.skills_description.label.text, required = true, autofocus = true) }}
+      </div>
+
 
       <!-- UUSI ALKAA -->
       <div class="field ui input">
         <!-- vaihtoehto: long text -->
-        <label>You can fill here a short job description for your company.</label>
-        {{ form.amount_meetings(class_ = 'form-control', placeholder = form.amount_meetings.label.text, required = true, autofocus = true) }}
+        <label>You can fill here a short job description for a position at your company.</label>
+        {{ form.job_description(class_ = 'form-control form_text_area', placeholder = form.job_description.label.text, required = true, autofocus = true) }}
       </div>
-      <div class="field ui input">
-        <!-- vaihtoehto: long text -->
-        <label>Here you can describe the skill's needed for the job.</label>
-        {{ form.amount_meetings(class_ = 'form-control', placeholder = form.amount_meetings.label.text, required = true, autofocus = true) }}
-      </div>
-      <!-- UUSI LOPPUU -->
+
+
 
 
 
