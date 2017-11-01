@@ -11,11 +11,12 @@
 
 <!-- styles -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+
+
 
 <link type="text/css" rel="stylesheet" href="/static/css/font-awesome-4.1.0.min.css" />
 <link type="text/css" rel="stylesheet" href="/static/css/layout.main.css" />
-<link type="text/css" rel="stylesheet" href="/static/css/main.css" />
+
 <link type="text/css" rel="stylesheet" href="/static/css/main.responsive.css" />
 <link type="text/css" rel="stylesheet" href="/static/css/main.quickfix.css" />
 
@@ -42,7 +43,15 @@
 <!-- scripts -->
 <script src="/static/js/libs/modernizr-2.8.2.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<link type="text/css" rel="stylesheet" href="/static/css/main.css" />
+
+
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
 <script type="text/javascript" src="/static/js/plugins.js" defer></script>
 <script type="text/javascript" src="/static/js/script.js" defer></script>
@@ -73,8 +82,8 @@ Modernizr.load({
        
         <div class="navbar-collapse">
           <ul class="nav navbar-nav" style="float:left;">
-            <li style="float:right;" id="nav_1" {% if request.endpoint == 'home' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Form</a></li>
-            <li style="float:right;margin-left:10px;" id="nav_2" {% if request.endpoint == 'about' %} class="active" {% endif %}><a href="{{ url_for('about') }}">Info</a></li>
+            <li style="float:right;margin-left:10px;" id="nav_1" {% if request.endpoint == 'home' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Form</a></li>
+            <li style="float:right;" id="nav_2" {% if request.endpoint == 'about' %} class="active" {% endif %}><a href="{{ url_for('about') }}">Info</a></li>
           </ul>
           
           <div id="nav-logo">

@@ -62,10 +62,23 @@
         {{ form.company_strengths(class_ = 'form-control form_text_area', placeholder = form.company_strengths.label.text, required = true, autofocus = true) }}
       </div>
 
-
       <p class="form-info-text">Next, we'll need information about your companys preferences for the best possible matching between your company and our participants.</p>
 
-      <div class="field ui input">
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" href="#profile1" role="tab" data-toggle="tab">Employee Profile 1</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#profile2" role="tab" data-toggle="tab">Employee Profile 2</a>
+  </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+
+  <div role="tabpanel" class="tab-pane active" id="profile1">
+
+    <div class="field ui input">
         <label>Are you looking full time or part time employees?</label>
         {{ form.job_nature(class_ = 'form-control radio-list', placeholder = form.job_nature.label.text, required = true, autofocus = true) }}
       </div>
@@ -90,24 +103,60 @@
       </div>
 
 
-      <!-- UUSI ALKAA -->
       <div class="field ui input">
-        <!-- vaihtoehto: long text -->
+        <label>You can fill here a short job description for a position at your company.</label>
+        {{ form.job_description(class_ = 'form-control form_text_area', placeholder = form.job_description.label.text, required = true, autofocus = true) }}
+      </div>  
+  </div>
+
+
+  <div role="tabpanel" class="tab-pane fade" id="profile2">
+    <div class="field ui input">
+      <label>Are you looking full time or part time employees?</label>
+        {{ form.job_nature(class_ = 'form-control radio-list', placeholder = form.job_nature.label.text, required = true, autofocus = true) }}
+      </div>
+
+      <div class="field ui input">
+        <label>Wished coding experience in years?</label>
+        {{ form.experience_in_years(class_ = 'form-control radio-list', placeholder = form.experience_in_years.label.text, required = true, autofocus = true) }}
+      </div>
+
+
+      <div class="field input">
+        <label>Excellent skills</label>
+        {{ form.excellent_skills(class_ = 'form-control ui multiple selection dropdown excellent', placeholder = form.excellent_skills.label.text, required = true, autofocus = true) }}
+      </div>
+      <div class="field">
+        <label>Nice to have skills</label>
+        {{ form.extra_skills(class_ = 'form-control ui multiple selection dropdown nice', placeholder = form.extra_skills.label.text, required = true, autofocus = true) }}
+      </div>
+      <div class="field ui input">
+        <label>Here you can further describe the skills and qualities needed for the job.</label>
+        {{ form.skills_description(class_ = 'form-control form_text_area', placeholder = form.skills_description.label.text, required = true, autofocus = true) }}
+      </div>
+
+
+      <div class="field ui input">
         <label>You can fill here a short job description for a position at your company.</label>
         {{ form.job_description(class_ = 'form-control form_text_area', placeholder = form.job_description.label.text, required = true, autofocus = true) }}
       </div>
 
+  </div>
+</div>
 
 
+      
 
-
+      
       <input type="submit" value="Submit" class="button-sea-serpent">
+
     </form>
   </div>
 </div>
 
 <script>
   // Hey, I'm doing this for free, don't judge me!
+  // It's cool mate.
   var changing = false;
   var skills = {{ skills|safe }};
 
