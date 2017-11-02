@@ -55,6 +55,7 @@ def load_user(user_id):
 def shutdown_session(exception=None):
     print 'Tearing down SQLAlchemy'
     db.session.commit()
+    db.session.flush()
     db.session.remove()
 
 
@@ -219,22 +220,27 @@ def register():
         password = form.password.data
         email = form.email.data
 
-        user = models.User.query.filter_by(email=email).first()
+        user = db.session.query(models.User).filter_by(email=email).first()
         if user:
             errors.append('User with this email already exists.')
 
-        user = models.User.query.filter_by(name=username).first()
+        user = db.session.query(models.User).filter_by(name=username).first()
         if user:
             errors.append('User with this username already exists.')
+
+        print user
 
         if not user:
             hashed_pass = bcrypt.generate_password_hash(password)
             user = models.User(username, hashed_pass, email)
             if user:
-                db.session.add(user)
-                db.session.commit()
-                login_user(user)
-                return redirect(url_for('home'))
+                try:
+                    db.session.add(user)
+                    db.session.commit()
+                    login_user(user)
+                    return redirect(url_for('home'))
+                except:
+                    errors.append('User already exists')
             else:
                 errors.append('Invalid reg')
 
