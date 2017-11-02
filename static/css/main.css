@@ -78,7 +78,7 @@ a {
     font-size: 1em;
     background: #fff;
     border: 1px solid #fff;
-    color: #fff;
+    color: black;
     box-shadow: 0 0 0 0 transparent inset;
     -webkit-transition: color .1s ease,border-color .1s ease;
     transition: color .1s ease,border-color .1s ease;
@@ -318,4 +318,8 @@ li>label {
 }
 .nav-tabs {
   margin-top: 30px;
+}
+
+ul {
+  color: #FFF!important;
 }
