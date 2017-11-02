@@ -128,9 +128,12 @@ def home():
             form.amount_meetings.data = 20
             form.personnel_present.data = 20
 
-    form.excellent_skills.choices = [(g, g) for g in skills]
-    form.extra_skills.choices = [(g, g) for g in skills]
-    form.titles.choices = [(g, g) for g in jobtitles]
+    form.applicants[0].excellent_skills.choices = [(g, g) for g in skills]
+    form.applicants[0].extra_skills.choices = [(g, g) for g in skills]
+
+    form.applicants[1].excellent_skills.choices = [(g, g) for g in skills]
+    form.applicants[1].extra_skills.choices = [(g, g) for g in skills]
+
 
     return render_template('pages/home.html', form=form, errors=errors,
                            skills=skills, success=success)

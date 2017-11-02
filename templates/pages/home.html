@@ -37,29 +37,29 @@
       </div>
       <div class="field ui input">
         <label>Contact email</label>
-        {{ form.contact_email(class_ = 'form-control', placeholder = form.contact_email.label.text, required = true, autofocus = true) }}
+        {{ form.contact_email(class_ = 'form-control', placeholder = form.contact_email.label.text, required = true) }}
 
       </div>
 
       <div class="field ui input">
 
         <label>How many persons will you have available for the Meeting Area on Saturday? Maximum amount of personnel for company is specified in the contract.Please make sure that you have badges available on Saturday.</label>
-        {{ form.personnel_present(class_ = 'form-control', placeholder = form.personnel_present.label.text, required = true, autofocus = true) }}
+        {{ form.personnel_present(class_ = 'form-control', placeholder = form.personnel_present.label.text, required = true) }}
       </div>
       <div class="field ui input">
         <label>What time will you be present at the Meeting Area?</label>
-        {{ form.time_present(class_ = 'form-control', placeholder = form.time_present.label.text, required = true, autofocus = true) }}
+        {{ form.time_present(class_ = 'form-control', placeholder = form.time_present.label.text, required = true) }}
       </div>
       <div class="field ui input">
         <label>What is optimal amount of meetings you would like to have with our participants on Saturday? We are mapping the needs of our partners and this number will not automatically translate to actual meetings at the event.</label>
 
-        {{ form.amount_meetings(class_ = 'form-control', placeholder = form.amount_meetings.label.text, required = true, autofocus = true) }}
+        {{ form.amount_meetings(class_ = 'form-control', placeholder = form.amount_meetings.label.text, required = true) }}
       </div>
 
 
       <div class="field ui input">
         <label>Describe your company. What stregnths do you have and why should developers be interested in you?</label>
-        {{ form.company_strengths(class_ = 'form-control form_text_area', placeholder = form.company_strengths.label.text, required = true, autofocus = true) }}
+        {{ form.company_strengths(class_ = 'form-control form_text_area', placeholder = form.company_strengths.label.text, required = true) }}
       </div>
 
       <p class="form-info-text">Next, we'll need information about your companys preferences for the best possible matching between your company and our participants.</p>
@@ -75,73 +75,48 @@
 
 <!-- Tab panes -->
 <div class="tab-content">
+      {% for l in form.applicants %}
+      {{ l.form.csrf_token }}
+        {% if loop.first %}
+        <div role="tabpanel" class="tab-pane active" id="profile{{ loop.index }}">
+        {% else %}
+        <div role="tabpanel" class="tab-pane" id="profile{{ loop.index }}">
+        {% endif %}
 
-  <div role="tabpanel" class="tab-pane active" id="profile1">
-
-    <div class="field ui input">
-        <label>Are you looking full time or part time employees?</label>
-        {{ form.job_nature(class_ = 'form-control radio-list', placeholder = form.job_nature.label.text, required = true, autofocus = true) }}
-      </div>
-
-      <div class="field ui input">
-        <label>Wished coding experience in years?</label>
-        {{ form.experience_in_years(class_ = 'form-control radio-list', placeholder = form.experience_in_years.label.text, required = true, autofocus = true) }}
-      </div>
-
-
-      <div class="field input">
-        <label>Excellent skills</label>
-        {{ form.excellent_skills(class_ = 'form-control ui multiple selection dropdown excellent', placeholder = form.excellent_skills.label.text, required = true, autofocus = true) }}
-      </div>
-      <div class="field">
-        <label>Nice to have skills</label>
-        {{ form.extra_skills(class_ = 'form-control ui multiple selection dropdown nice', placeholder = form.extra_skills.label.text, required = true, autofocus = true) }}
-      </div>
-      <div class="field ui input">
-        <label>Here you can further describe the skills and qualities needed for the job.</label>
-        {{ form.skills_description(class_ = 'form-control form_text_area', placeholder = form.skills_description.label.text, required = true, autofocus = true) }}
-      </div>
-
-
-      <div class="field ui input">
-        <label>You can fill here a short job description for a position at your company.</label>
-        {{ form.job_description(class_ = 'form-control form_text_area', placeholder = form.job_description.label.text, required = true, autofocus = true) }}
-      </div>  
-  </div>
-
-
-  <div role="tabpanel" class="tab-pane fade" id="profile2">
-    <div class="field ui input">
-      <label>Are you looking full time or part time employees?</label>
-        {{ form.job_nature(class_ = 'form-control radio-list', placeholder = form.job_nature.label.text, required = true, autofocus = true) }}
-      </div>
-
-      <div class="field ui input">
-        <label>Wished coding experience in years?</label>
-        {{ form.experience_in_years(class_ = 'form-control radio-list', placeholder = form.experience_in_years.label.text, required = true, autofocus = true) }}
-      </div>
+        <div class="field ui input">
+            <label>Are you looking full time or part time employees?</label>
+            {{ l.form.job_nature(class_ = 'form-control radio-list', placeholder = l.form.job_nature.label.text, required = true) }}
+          </div>
+    
+          <div class="field ui input">
+            <label>Wished coding experience in years?</label>
+            {{ l.form.experience_in_years(class_ = 'form-control radio-list', placeholder = l.form.experience_in_years.label.text, required = true) }}
+          </div>
+    
+    
+          <div class="field input">
+            <label>Excellent skills</label>
+            {{ l.form.excellent_skills(class_ = 'form-control ui multiple selection dropdown excellent', placeholder = l.form.excellent_skills.label.text, required = true) }}
+          </div>
+          <div class="field">
+            <label>Nice to have skills</label>
+            {{ l.form.extra_skills(class_ = 'form-control ui multiple selection dropdown nice', placeholder = l.form.extra_skills.label.text, required = true) }}
+          </div>
+          <div class="field ui input">
+            <label>Here you can further describe the skills and qualities needed for the job.</label>
+            {{ l.form.skills_description(class_ = 'form-control form_text_area', placeholder = l.form.skills_description.label.text, required = true) }}
+          </div>
+    
+    
+          <div class="field ui input">
+            <label>You can fill here a short job description for a position at your company.</label>
+            {{ l.form.job_description(class_ = 'form-control form_text_area', placeholder = l.form.job_description.label.text, required = true) }}
+          </div>  
+        </div>
+      
+      {% endfor %}
 
 
-      <div class="field input">
-        <label>Excellent skills</label>
-        {{ form.excellent_skills(class_ = 'form-control ui multiple selection dropdown excellent', placeholder = form.excellent_skills.label.text, required = true, autofocus = true) }}
-      </div>
-      <div class="field">
-        <label>Nice to have skills</label>
-        {{ form.extra_skills(class_ = 'form-control ui multiple selection dropdown nice', placeholder = form.extra_skills.label.text, required = true, autofocus = true) }}
-      </div>
-      <div class="field ui input">
-        <label>Here you can further describe the skills and qualities needed for the job.</label>
-        {{ form.skills_description(class_ = 'form-control form_text_area', placeholder = form.skills_description.label.text, required = true, autofocus = true) }}
-      </div>
-
-
-      <div class="field ui input">
-        <label>You can fill here a short job description for a position at your company.</label>
-        {{ form.job_description(class_ = 'form-control form_text_area', placeholder = form.job_description.label.text, required = true, autofocus = true) }}
-      </div>
-
-  </div>
 </div>
 
 
@@ -176,8 +151,8 @@
     if (changing) return;
     changing = true;
 
-    var excellentSelected = $('.ui.dropdown.excellent').dropdown('get value');
-    var niceSelected = $('.ui.dropdown.nice').dropdown('get value');
+    var excellentSelected = $('.ui.dropdown.excellent[tabindex=0]').dropdown('get value');
+    var niceSelected = $('.ui.dropdown.nice[tabindex=0]').dropdown('get value');
 
     var arr = [];
     for (var i = 0; i < skills.length; i++) {
@@ -187,9 +162,9 @@
     }
     
 
-    $('.ui.dropdown.nice')
+    $('.ui.dropdown.nice[tabindex=0]')
       .dropdown('change values', arr);
-    $('.ui.dropdown.nice')
+    $('.ui.dropdown.nice[tabindex=0]')
       .dropdown('set selected', niceSelected);
 
     changing = false;
@@ -199,8 +174,8 @@
     if (changing) return;
     changing = true;
 
-    var excellentSelected = $('.ui.dropdown.excellent').dropdown('get value');
-    var niceSelected = $('.ui.dropdown.nice').dropdown('get value');
+    var excellentSelected = $('.ui.dropdown.excellent[tabindex=0]').dropdown('get value');
+    var niceSelected = $('.ui.dropdown.nice[tabindex=0]').dropdown('get value');
 
     var arr = [];
     for (var i = 0; i < skills.length; i++) {
@@ -209,9 +184,9 @@
       arr.push({value: s, name: s});
     }
 
-    $('.ui.dropdown.excellent')
+    $('.ui.dropdown.excellent[tabindex=0]')
       .dropdown('change values', arr);
-    $('.ui.dropdown.excellent')
+    $('.ui.dropdown.excellent[tabindex=0]')
       .dropdown('set selected', excellentSelected);
 
     changing = false;
