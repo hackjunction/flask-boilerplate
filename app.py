@@ -232,17 +232,18 @@ def register():
 
         if not user:
             hashed_pass = bcrypt.generate_password_hash(password)
-            user = models.User(username, hashed_pass, email)
-            if user:
-                try:
-                    db.session.add(user)
-                    db.session.commit()
-                    login_user(user)
-                    return redirect(url_for('home'))
-                except:
-                    errors.append('User already exists')
-            else:
-                errors.append('Invalid reg')
+            try:
+                user = models.User(username, hashed_pass, email)
+                if user:
+                        db.session.add(user)
+                        db.session.commit()
+                        login_user(user)
+                        return redirect(url_for('home'))
+                else:
+                    errors.append('Invalid reg')
+            except:
+                errors.append('User already exists')
+
 
     else:
         for fieldName, errorMessages in form.errors.items():
