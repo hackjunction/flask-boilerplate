@@ -82,20 +82,28 @@ def home():
     form = CompanyForm(request.form)
     if request.method == 'POST':
         if form.validate():
-            excellent_skills = form.excellent_skills.data
-            extra_skills = form.extra_skills.data
-            titles = form.titles.data
-            amount_meetings = form.amount_meetings.data
-            personnel_present = form.personnel_present.data
+            # Company data
             time_present = form.time_present.data
+            company_name = form.name.data
+            amount_meetings = form.amount_meetings.data
+            company_strengths = form.company_strengths.data
+            personnel_present = form.personnel_present.data
+            contact_email = form.contact_email.data
 
-            current_user.company_name = form.name.data
-            current_user.contact_email = form.contact_email.data
-            current_user.excellent_skills = json.dumps(excellent_skills)
-            current_user.extra_skills = json.dumps(extra_skills)
-            current_user.amount_meetings = amount_meetings
-            current_user.personnel_present = personnel_present
-            current_user.time_present = time_present
+            applicants = []
+            # Applicant data
+            for applicant in form.applicants:
+                job_nature = applicant.job_nature.data
+                experience_in_years = applicant.experience_in_years.data
+                extra_skills = json.dumps(applicant.extra_skills.data)
+                skills_description = applicant.skills_description.data
+                job_description = applicant.job_description.data
+                excellent_skills = json.dumps(applicant.excellent_skills.data)
+
+                new_applicant = models.Applicant(job_nature, experience_in_years, excellent_skills, 
+                                                extra_skills, skills_description, job_description)
+
+                applicants.append(new_applicant)
 
             try:
                 db.session.commit()
@@ -105,6 +113,23 @@ def home():
                 db.session.rollback()
                 print str(e)
                 errors.append('Database commit failure.')
+            if (success):
+                current_user.amount_meetings = amount_meetings
+                current_user.personnel_present = personnel_present
+                current_user.time_present = time_present
+                current_user.company_name = company_name
+                current_user.contact_email = contact_email
+                current_user.company_strengths = company_strengths
+                current_user.applicants = applicants
+
+                try:
+                    db.session.commit()
+                    success = True
+                except Exception, e:
+                    print 'Commit failed'
+                    db.session.rollback()
+                    print str(e)
+                    errors.append('Database commit failure.')
 
 
         else:
@@ -116,17 +141,25 @@ def home():
             # If company name is set, all other data should also already be there
             form.name.data = current_user.company_name
             form.contact_email.data = current_user.contact_email
-            form.excellent_skills.data = json.loads(current_user.excellent_skills)
-            form.extra_skills.data = json.loads(current_user.extra_skills)
             form.amount_meetings.data = current_user.amount_meetings
             form.personnel_present.data = current_user.personnel_present
+            form.company_strengths.data = current_user.company_strengths
             form.time_present.data = current_user.time_present
+
+            i = 0
+            for applicant in current_user.applicants:
+                form.applicants[i].job_nature.data = applicant.job_nature
+                form.applicants[i].experience_in_years.data = applicant.experience_in_years
+                form.applicants[i].excellent_skills.data = json.loads(applicant.excellent_skills)
+                form.applicants[i].extra_skills.data = json.loads(applicant.extra_skills)
+                form.applicants[i].skills_description.data = applicant.skills_description
+                form.applicants[i].job_description.data = applicant.job_description
+                i = i + 1
+
         else:
             # Set a couple of default values if user has never submitted form
             form.name.data = current_user.name
             form.contact_email.data = current_user.email
-            form.amount_meetings.data = 20
-            form.personnel_present.data = 20
 
     form.applicants[0].excellent_skills.choices = [(g, g) for g in skills]
     form.applicants[0].extra_skills.choices = [(g, g) for g in skills]

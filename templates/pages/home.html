@@ -6,6 +6,8 @@
 </div>
 <div align="center">
   {% if success %}
+  <br>
+  <br>
   <div class="alert alert-success">
     <strong>Success!</strong> Your data has been saved. Sit tight for schedule!
   </div>
@@ -137,13 +139,13 @@
 
   $('.ui.dropdown.nice').dropdown({
     onChange: function(value, text, $choice){
-      updateNiceDropdown();
+      //updateNiceDropdown();
     }
   });
 
   $('.ui.dropdown.excellent').dropdown({
     onChange: function(value, text, $choice){
-      updateExcellentDropdown();
+      //updateExcellentDropdown();
     }
   });
 
@@ -193,8 +195,8 @@
   }
 
   $('.ui.dropdown.title').dropdown();
-  updateExcellentDropdown();
-  updateNiceDropdown();
+  //updateExcellentDropdown();
+  //updateNiceDropdown();
 </script>
 
 
