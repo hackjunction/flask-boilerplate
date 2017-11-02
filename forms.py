@@ -8,18 +8,23 @@ class NoValidationSelectMultipleField(SelectMultipleField):
         """per_validation is disabled"""
         return True
 
+# Radio button field without validation
+class NoValidationRadioField(RadioField):
+    def pre_validate(self, form):
+        """per_validation is disabled"""
+        return True
+
 class ApplicantForm(Form):
     def __init__(self, *args, **kwargs):
         kwargs['csrf_enabled'] = False
         Form.__init__(self, *args, **kwargs)
     excellent_skills = NoValidationSelectMultipleField('Skills applicant should excel at')
     extra_skills = NoValidationSelectMultipleField('Skills applicant should excel at')
-    skills_description = TextAreaField('Skills description', validators=[DataRequired(), Length(min=6, max=200)])
-    experience_in_years = RadioField('Experience', 
-        validators=[DataRequired(), Length(min=6, max=200)],
+    skills_description = TextAreaField('Skills description')
+    experience_in_years = NoValidationRadioField('Experience',
         choices=[('value_one','1'),('value_two','1-2 years'),('value_three','3-5 years'),('value_four','5+ years')])
-    job_description = TextAreaField('Job Description', validators=[DataRequired(), Length(min=6, max=200)])
-    job_nature = RadioField('Job nature?', validators=[DataRequired(), Length(min=6, max=200)],
+    job_description = TextAreaField('Job Description')
+    job_nature = NoValidationRadioField('Job nature?',
         choices=[('value_one','Full time'),('value_two','Part Time'),('value_three','Both')])
 
 
