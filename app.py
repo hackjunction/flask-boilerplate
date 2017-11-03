@@ -238,7 +238,7 @@ def register():
                         db.session.add(user)
                         db.session.commit()
                         login_user(user)
-                        return redirect(url_for('home'))
+                        return redirect(url_for('about'))
                 else:
                     errors.append('Invalid reg')
             except:
