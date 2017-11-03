@@ -226,7 +226,7 @@ def register():
 
         user = db.session.query(models.User).filter_by(name=username).first()
         if user:
-            errors.append('User with this username already exists.')
+            errors.append('User with this company name already exists.')
 
         print user
 
