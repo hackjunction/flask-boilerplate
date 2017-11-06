@@ -323,3 +323,7 @@ li>label {
 ul.nav-tabs {
   color: #FFF!important;
 }
+
+.form-control li {
+  color: #fff;
+}
